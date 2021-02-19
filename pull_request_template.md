@@ -11,9 +11,11 @@ Please include a summary of the change and which issue is fixed. Please also inc
 # Testing Instructions
 `git fetch `
 `git checkout `
-npm start
+`npm start`
 
 Please describe the tests required to verify your changes. Provide instructions so PR Tester can check functionality. Please also list any relevant details for your tests
+
+`git branch -d `
 
 # Checklist:
 - [ ] I have performed a self-review of my own code
