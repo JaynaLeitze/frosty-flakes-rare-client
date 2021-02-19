@@ -1,21 +1,21 @@
-import React, { useRef } from "react"
-import { Link, useHistory } from "react-router-dom"
+import React, { useRef } from "react";
+import { Link, useHistory } from "react-router-dom";
 // import "./Auth.css"
 
 export const Login = () => {
-  const email = useRef()
-  const password = useRef()
-  const invalidDialog = useRef()
-  const history = useHistory()
+  const email = useRef();
+  const password = useRef();
+  const invalidDialog = useRef();
+  const history = useHistory();
 
   const handleLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     return fetch("http://127.0.0.1:8000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({
         email: email.current.value,
@@ -25,19 +25,22 @@ export const Login = () => {
       .then((res) => res.json())
       .then((res) => {
         if ("valid" in res && res.valid) {
-          localStorage.setItem("rare_user_id", res.token)
-          history.push("/")
+          localStorage.setItem("rare_user_id", res.token);
+          history.push("/");
         } else {
-          invalidDialog.current.showModal()
+          invalidDialog.current.showModal();
         }
-      })
-  }
+      });
+  };
 
   return (
     <main className="container--login">
       <dialog className="dialog dialog--auth" ref={invalidDialog}>
         <div>Email or password was not valid.</div>
-        <button className="button--close" onClick={(e) => invalidDialog.current.close()}>
+        <button
+          className="button--close"
+          onClick={(e) => invalidDialog.current.close()}
+        >
           Close
         </button>
       </dialog>
@@ -85,5 +88,5 @@ export const Login = () => {
         <Link to="/register">Not a member yet?</Link>
       </section>
     </main>
-  )
-}
+  );
+};
