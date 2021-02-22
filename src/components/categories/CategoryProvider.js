@@ -28,6 +28,10 @@ export const CategoryProvider = (props) => {
   const removeCategory = (categoryId) => {
     return fetch(`http://localhost:8000/categories/${categoryId}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
+        "Content-Type": "application/json",
+      },
     }).then(getCategories);
   };
 
@@ -35,6 +39,7 @@ export const CategoryProvider = (props) => {
     return fetch(`http://localhost:8000/categories/${category.id}`, {
       method: "PUT",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(category),
