@@ -6,13 +6,21 @@ export const TagProvider = (props) => {
   const [tags, setTags] = useState([]);
 
   const getTags = () => {
-    return fetch("http://localhost:8000/tags")
+    return fetch("http://localhost:8000/tags", {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
+      },
+    })
       .then((res) => res.json())
       .then(setTags);
   };
 
   const getSingleTag = (id) => {
-    return fetch(`http://localhost:8000/tags/${id}`)
+    return fetch(`http://localhost:8000/tags/${id}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
+      },
+    })
       .then((res) => res.json())
       .then(setTags);
   };
@@ -37,6 +45,7 @@ export const TagProvider = (props) => {
     return fetch(`http://localhost:8000/tags/${tag.id}`, {
       method: "PUT",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(tag),
