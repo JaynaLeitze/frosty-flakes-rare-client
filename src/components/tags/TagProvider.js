@@ -29,6 +29,7 @@ export const TagProvider = (props) => {
     return fetch("http://localhost:8000/tags", {
       method: "POST",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(tag),
@@ -38,6 +39,10 @@ export const TagProvider = (props) => {
   const deleteTag = (id) => {
     return fetch(`http://localhost:8000/tags/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
+        "Content-Type": "application/json",
+      },
     }).then(getTags);
   };
 
