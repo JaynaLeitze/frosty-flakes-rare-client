@@ -11,8 +11,8 @@ export const AllPost = ({post, props}) =>{
         return(
             
             <div className="posts">
-               <div>userid: {post.user_id}</div>
-                <div>category_id: {post.category_id}</div>
+               {/* <div>userid: {post.user_id}</div>
+                <div>category_id: {post.category_id}</div> */}
                 <Link to={{
                     pathname: `/posts/${post.id}`,
                     state: { chosenPost: post }
