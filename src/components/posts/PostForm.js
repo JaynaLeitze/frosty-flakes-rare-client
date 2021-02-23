@@ -72,7 +72,6 @@ const constructNewPost = () => {
             user_id: parseInt(localStorage.getItem("rare_user_id")),
             category_id: parseInt(formPost.category_id),
             title: formPost.title,
-            publication_date: Date.now(),
             image_url: formPost.image_url,
             content: formPost.content,
             approved: true
@@ -83,7 +82,6 @@ const constructNewPost = () => {
             user_id: parseInt(localStorage.getItem("rare_user_id")),
             category_id: parseInt(formPost.category_id),
             title: formPost.title,
-            publication_date: Date.now(),
             image_url: formPost.image_url,
             content: formPost.content,
             approved: true
