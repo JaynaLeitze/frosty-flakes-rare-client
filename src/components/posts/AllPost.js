@@ -11,18 +11,18 @@ export const AllPost = ({post, props}) =>{
         return(
             
             <div className="posts">
-               <div>userid: {post.user_id}</div>
-                <div>category_id: {post.category_id}</div>
+               {/* <div>userid: {post.user_id}</div>
+                <div>category_id: {post.category_id}</div> */}
                 <Link to={{
                     pathname: `/posts/${post.id}`,
                     state: { chosenPost: post }
                 }}>
                     title: {post.title}</Link>
-                <div>publication_date: {<HumanDate date={Date(post.publication_date)} />}</div>
+                {/* <div>publication_date: {<HumanDate date={Date(post.publication_date)} />}</div>
                 <div>image_url: {post.image_url}</div>
-                <div>content: {post.content}</div>
+                <div>content: {post.content}</div> */}
                 <div>category: {post.category.label}</div>
-                <div>author: {post.username} </div>
+                <div>author: {post.user.user.first_name} {post.user.user.last_name} </div>
             </div>
         )
 }
