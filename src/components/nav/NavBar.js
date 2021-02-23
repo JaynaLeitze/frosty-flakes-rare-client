@@ -1,10 +1,10 @@
-import React from "react"
-import { Link, useHistory } from "react-router-dom"
-import "./NavBar.css"
-import Logo from "./rare.jpeg"
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
+import "./NavBar.css";
+import Logo from "./rare.jpeg";
 
 export const NavBar = () => {
-  const history = useHistory()
+  const history = useHistory();
 
   return (
     <ul className="navbar">
@@ -12,12 +12,12 @@ export const NavBar = () => {
         <img className="navbar__logo" src={Logo} />
       </li>
       <li className="navbar__item">
-        <Link className="navbar__link" to="/allposts">
+        <Link className="navbar__link" to="/posts">
           All Posts
         </Link>
       </li>
       <li className="navbar__item">
-        <Link className="navbar__link" to="/posts">
+        <Link className="navbar__link" to="/myposts">
           My Posts
         </Link>
       </li>
@@ -41,8 +41,8 @@ export const NavBar = () => {
           <button
             className="nav-link fakeLink"
             onClick={() => {
-              localStorage.removeItem("rare_user_id")
-              history.push({ pathname: "/" })
+              localStorage.removeItem("rare_user_id");
+              history.push({ pathname: "/" });
             }}
           >
             Logout
@@ -63,5 +63,5 @@ export const NavBar = () => {
         </>
       )}{" "}
     </ul>
-  )
-}
+  );
+};

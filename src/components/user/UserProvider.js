@@ -1,42 +1,54 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 
-export const UserContext = React.createContext()
+export const UserContext = React.createContext();
 
 export const UserProvider = (props) => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
   const getAllUsers = () => {
-    return fetch("http://localhost:8088/users")
+    return fetch("http://localhost:8000/users", {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
+      },
+    })
       .then((res) => res.json())
-      .then(setUsers)
-  }
+      .then(setUsers);
+  };
 
   const getSingleUser = (id) => {
-    return fetch(`http://localhost:8088/users/${id}`).then((res) => res.json())
-  }
+    return fetch(`http://localhost:8000/users/${id}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
+      },
+    }).then((res) => res.json());
+  };
 
   const createUser = (newUser) => {
-    return fetch("http://localhost:8088/users", {
+    return fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newUser),
-    }).then(getAllUsers)
-  }
+    }).then(getAllUsers);
+  };
 
   const updateUser = (newUser) => {
-    return fetch(`http://localhost:8088/users/${newUser.id}`, {
+    return fetch(`http://localhost:8000/users/${newUser.id}`, {
       method: "PUT",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newUser),
-    }).then(getAllUsers)
-  }
+    }).then(getAllUsers);
+  };
   return (
-    <UserContext.Provider value={{ users, getAllUsers, getSingleUser, createUser, updateUser }}>
+    <UserContext.Provider
+      value={{ users, getAllUsers, getSingleUser, createUser, updateUser }}
+    >
       {props.children}
     </UserContext.Provider>
-  )
-}
+  );
+};
