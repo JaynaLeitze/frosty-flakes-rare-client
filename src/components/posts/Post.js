@@ -6,7 +6,15 @@ import {HumanDate} from "../utils/HumanDate"
 
 
 export const Post = ({post, props}) =>{
+    const { deletePost } = useContext(PostContext)
     // when user provider is provided, if statement will need to be altered to user.id = localstorage.getItem(rare_user_id)
+
+    const confirmDelete =()=>{
+        const d = window.confirm("Are you sure you would like to delete this post?")
+        if(d===true){
+            deletePost(post.id).then(() => { props.history.push("/myposts") })
+        }
+     }
     if(localStorage.getItem("rare_user_id")){
         return(
             
@@ -29,6 +37,7 @@ export const Post = ({post, props}) =>{
                     pathname: `/posts/manage_tags/${post.id}`,
                     state:{chosenPost: post}
                 }}>Manage Tags</Link>
+                <button onClick={() => { confirmDelete() }}>Delete Post</button>  
             </div>
         )
     }else{
