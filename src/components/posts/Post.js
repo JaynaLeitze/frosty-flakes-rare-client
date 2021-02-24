@@ -6,6 +6,7 @@ import {HumanDate} from "../utils/HumanDate"
 
 
 export const Post = ({post, props}) =>{
+    const { deletePost } = useContext(PostContext)
     // when user provider is provided, if statement will need to be altered to user.id = localstorage.getItem(rare_user_id)
     if(localStorage.getItem("rare_user_id")){
         return(
@@ -29,6 +30,7 @@ export const Post = ({post, props}) =>{
                     pathname: `/posts/manage_tags/${post.id}`,
                     state:{chosenPost: post}
                 }}>Manage Tags</Link>
+                <button onClick={() => { deletePost(post.id) }}>Delete Post</button>  
             </div>
         )
     }else{
