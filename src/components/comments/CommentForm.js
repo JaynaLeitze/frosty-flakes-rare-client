@@ -40,18 +40,18 @@ export const CommentForm = (props) => {
         if (editMode) {
             updateComment({
                 id: comment.id,
-                post_id: comment.post_id,
+                post_id: comment.post.id,
                 author_id,
                 content: comment.content,
                 created_on: comment.created_on   
             })
-            .then(() => props.history.push(`/posts/${comment.post_id}`))
+            .then(() => props.history.push(`/posts/${comment.post.id}`))
         } else {
             addComment({
                 post_id,
                 author_id,
                 content: comment.content,
-                created_on: Date.now()
+                // created_on: Date.now()
             })
             .then(() => props.history.push(`/posts/${post_id}`))
         }
