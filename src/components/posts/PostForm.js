@@ -86,7 +86,7 @@ const constructNewPost = () => {
             content: formPost.content,
             approved: true
         }, tagArrayState)
-                .then(() => props.history.push("/posts"))
+                .then(() => props.history.push("/myposts"))
             }
         }
         
