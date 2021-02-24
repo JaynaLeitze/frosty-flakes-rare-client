@@ -9,7 +9,7 @@ Please include a summary of the change and which issue is fixed. Please also inc
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 
 # Testing Instructions
-`git fetch `
+`git fetch origin `
 `git checkout `
 `npm start`
 
