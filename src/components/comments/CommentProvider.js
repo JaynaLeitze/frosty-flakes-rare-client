@@ -20,12 +20,12 @@ export const CommentProvider = (props) => {
 
   const getComments = () => {
     return (
-      fetch("http://localhost:8000/comments"),
+      fetch("http://localhost:8000/comments",
       {
         headers: {
           Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
         },
-      }
+      })
         .then((res) => res.json())
         .then(setComments)
     );
@@ -33,12 +33,12 @@ export const CommentProvider = (props) => {
 
   const getSingleComment = (id) => {
     return (
-      fetch(`http://localhost:8000/comments/${id}`),
+      fetch(`http://localhost:8000/comments/${id}`,
       {
         headers: {
           Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
         },
-      }
+      })
         .then((res) => res.json())
         .then(setComment)
     );

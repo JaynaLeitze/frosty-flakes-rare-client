@@ -4,7 +4,7 @@ import { CommentContext } from "./CommentProvider"
 export const Comment = ({ comment, props }) => {
 
     const { deleteComment } = useContext(CommentContext)
-    const postId = parseInt(comment.post_id)
+    const postId = parseInt(comment.post.id)
     const date = new Date(comment.created_on)
 
     const confirmDeleteComment = () => {
