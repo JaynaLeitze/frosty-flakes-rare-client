@@ -1,23 +1,22 @@
-import React, {useContext, useEffect} from "react"
-import {PostContext} from "./PostProvider"
-import {Post} from "./Post"
-import { Link } from "react-router-dom"
+import React, { useContext, useEffect } from "react";
+import { PostContext } from "./PostProvider";
+import { Post } from "./Post";
+import { Link } from "react-router-dom";
 
+export const UserPostList = (props) => {
+  const { myPosts, getMyPosts } = useContext(PostContext);
 
-export const UserPostList = (props) =>{
-    const { posts, getPostsByUserId } = useContext(PostContext)
+  useEffect(() => {
+    getMyPosts();
+  }, []);
 
-    useEffect(() =>{
-        getPostsByUserId()
-    }, [])
-
-    return (
-        <div>
-            <h3>Posts</h3>
-            <Link to="/posts/create">Create New Post</Link>
-            {
-                posts.map(p => <Post key={p.id} post={p} props={props}/>)
-            }
-        </div>
-    )
-}
+  return (
+    <div>
+      <h3>Posts</h3>
+      <Link to="/posts/create">Create New Post</Link>
+      {myPosts.map((p) => (
+        <Post key={p.id} post={p} props={props} />
+      ))}
+    </div>
+  );
+};

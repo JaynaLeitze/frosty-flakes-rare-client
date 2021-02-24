@@ -6,6 +6,7 @@ export const PostContext = React.createContext();
 export const PostProvider = (props) => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState({ category: {} });
+  const [myPosts, setMyPosts] = useState([]);
   const [postId, setPostId] = useState(0);
   const { addPostTag } = useContext(PostTagContext);
 
@@ -19,15 +20,24 @@ export const PostProvider = (props) => {
       .then(setPosts);
   };
 
-  const getPostsByUserId = (userId) => {
-    userId = `${localStorage.getItem("rare_user_id")}`;
-    return fetch(`http://localhost:8000/posts?user_id=${userId}`, {
+  // const getPostsByUserId = (userId) => {
+  //   userId = `${localStorage.getItem("rare_user_id")}`;
+  //   return fetch(`http://localhost:8000/posts?user_id=${userId}`, {
+  //     headers: {
+  //       Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then(setPosts);
+  // };
+  const getMyPosts = () => {
+    return fetch("http://localhost:8000/myposts", {
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
       },
     })
       .then((res) => res.json())
-      .then(setPosts);
+      .then(setMyPosts);
   };
 
   const getSinglePost = (id) => {
@@ -89,7 +99,8 @@ export const PostProvider = (props) => {
         updatePost,
         deletePost,
         getSinglePost,
-        getPostsByUserId,
+        myPosts,
+        getMyPosts,
         post,
         setPost,
         postId,
